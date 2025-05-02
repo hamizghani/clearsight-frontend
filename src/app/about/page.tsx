@@ -5,7 +5,7 @@ const AboutPage: React.FC = () => {
     return (
         <div>
             <Navbar />
-            <h1>About Us</h1>
+            <h1>About U</h1>
             <p>Welcome to the About page! Learn more about our mission and values here.</p>
         </div>
     );
