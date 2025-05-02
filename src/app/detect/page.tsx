@@ -1,10 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 
 export default function DetectPage() {
+  const router = useRouter();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [patientName, setPatientName] = useState('');
+  const [patientDOB, setPatientDOB] = useState('');
+  const [patientGender, setPatientGender] = useState('');
+  const [patientSymptom, setPatientSymptom] = useState('');
+  const [symptomDuration, setSymptomDuration] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -13,12 +21,37 @@ export default function DetectPage() {
   };
 
   const handleProcessClick = () => {
-    if (selectedFile) {
-      // Handle the file upload logic here
-      console.log('File selected:', selectedFile.name);
-      alert(`Processing file: ${selectedFile.name}`);
+    if (selectedFile && patientName && patientDOB && patientGender) {
+      setIsSubmitting(true);
+      
+      // In a real implementation, you would upload the file to the server here
+      // For demo purposes, we're simulating a file upload and generating a random ID
+      
+      // Generate a random patient ID (in a real app, this would come from the server)
+      const patientId = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      
+      // Simulate processing delay
+      setTimeout(() => {
+        // Store the patient data in localStorage for demo purposes
+        // In a real app, this data would be stored on the server
+        const patientData = {
+          id: patientId,
+          name: patientName,
+          dob: patientDOB,
+          gender: patientGender,
+          symptom: patientSymptom,
+          symptomDuration: symptomDuration,
+          // In a real app, we would store the actual image URL after upload
+          hasImage: !!selectedFile
+        };
+        
+        localStorage.setItem(`patient-${patientId}`, JSON.stringify(patientData));
+        
+        // Navigate to the results page
+        router.push(`/detect/id/${patientId}`);
+      }, 1000);
     } else {
-      alert('Please upload an image first.');
+      alert('Please fill in all required fields and upload an image.');
     }
   };
 
@@ -40,6 +73,9 @@ export default function DetectPage() {
                   type="text"
                   placeholder="Type here..."
                   className="w-full p-3 rounded-lg border border-gray-300"
+                  value={patientName}
+                  onChange={(e) => setPatientName(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -49,6 +85,9 @@ export default function DetectPage() {
                 <input
                   type="date"
                   className="w-full p-3 rounded-lg border border-gray-300"
+                  value={patientDOB}
+                  onChange={(e) => setPatientDOB(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -59,6 +98,9 @@ export default function DetectPage() {
                   type="text"
                   placeholder="Type here..."
                   className="w-full p-3 rounded-lg border border-gray-300"
+                  value={patientGender}
+                  onChange={(e) => setPatientGender(e.target.value)}
+                  required
                 />
               </div>
               <div>
@@ -69,6 +111,8 @@ export default function DetectPage() {
                   type="text"
                   placeholder="Type here..."
                   className="w-full p-3 rounded-lg border border-gray-300"
+                  value={patientSymptom}
+                  onChange={(e) => setPatientSymptom(e.target.value)}
                 />
               </div>
               <div>
@@ -79,21 +123,17 @@ export default function DetectPage() {
                   type="text"
                   placeholder="Type here..."
                   className="w-full p-3 rounded-lg border border-gray-300"
+                  value={symptomDuration}
+                  onChange={(e) => setSymptomDuration(e.target.value)}
                 />
               </div>
-              <button
-                type="button"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
-              >
-                Next Page
-              </button>
             </form>
           </div>
 
           {/* Upload Image */}
           <div className="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold mb-4">Upload Image</h2>
-            <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg border-dashed border-2 border-gray-400">
+            <div className="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg border-dashed border-2 border-gray-400 relative">
               <input
                 type="file"
                 accept="image/*"
@@ -109,9 +149,10 @@ export default function DetectPage() {
             <button
               type="button"
               onClick={handleProcessClick}
-              className="mt-6 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700"
+              className="mt-6 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-blue-400"
+              disabled={!selectedFile || !patientName || !patientDOB || !patientGender || isSubmitting}
             >
-              Process
+              {isSubmitting ? 'Processing...' : 'Process'}
             </button>
           </div>
         </div>
