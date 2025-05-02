@@ -25,7 +25,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/topup">
+            <Link href="/payment">
               <p className="hover:underline text-xl">Top Up</p>
             </Link>
           </li>
