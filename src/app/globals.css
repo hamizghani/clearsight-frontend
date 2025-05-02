@@ -1,2 +1,46 @@
 @import "tailwindcss";
 
+/* Add this to your globals.css */
+
+.gradient-border {
+    position: relative;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+  
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, #bfdbfe, #93c5fd, #bfdbfe);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  /* Alternative approach using box-shadow */
+  .gradient-border-alt {
+    position: relative;
+    border-radius: 0.5rem;
+    background: white;
+    box-shadow: 
+      0 0 0 1px #bfdbfe,
+      0 0 0 1px #93c5fd,
+      0 0 0 1px #bfdbfe;
+  }
+  
+  /* Usage example in component */
+  /*
+  <div className="gradient-border p-8">
+    <p className="text-center text-lg leading-relaxed">
+      Your patient's data is stored and collected in <span className="text-blue-500">ClearSight AI's</span> cloud safely and is not shared with any third parties. 
+      All information is used exclusively to assist doctors in 
+      making more accurate diagnoses.
+    </p>
+  </div>
+  */
