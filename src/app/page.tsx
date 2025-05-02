@@ -1,12 +1,25 @@
 import Logo1 from '@/components/Logo1';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from "@/lib/utils";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header/Navigation Bar */}
-      <header className="bg-white shadow-sm py-2 sticky top-0 z-10">
+    <div className="min-h-screen flex flex-col relative">
+      {/* Grid Background */}
+      <div
+        className={cn(
+          "absolute inset-0 z-0",
+          "[background-size:40px_40px]",
+          "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
+          "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
+        )}
+      />
+      {/* Radial gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+
+      {/* Header/Navigation Bar - Add z-20 to appear above grid */}
+      <header className="bg-white/80 backdrop-blur-sm shadow-sm py-2 sticky top-0 z-20">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
             <Logo1 color="text-sky-500" />
@@ -19,8 +32,8 @@ export default function LandingPage() {
             <Link href="/signup" className="text-gray-700 hover:text-blue-500">
               Sign Up
             </Link>
-            <Link href="/privacy" className="text-gray-700 hover:text-blue-500">
-              Privacy Policy
+            <Link href="#privacy" className="text-gray-700 hover:text-blue-500">
+              Pricing
             </Link>
             <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-1 rounded-md">
               Log In
@@ -29,8 +42,8 @@ export default function LandingPage() {
         </div>
       </header>
       
-      {/* Main Content - Scrollable */}
-      <main className="flex-grow">
+      {/* Main Content - Add relative and z-10 to appear above grid */}
+      <main className="flex-grow relative z-10">
         {/* Hero Section */}
       <section className="container mx-auto pt-24 pb-16 px-4">
         <div className="flex flex-col md:flex-row items-center justify-between">
@@ -65,9 +78,10 @@ export default function LandingPage() {
             <Image 
               src="/clearsight-logo-1.png"
               alt="ClearSight AI Large Logo" 
-              width={400}
+              width={400} 
               height={400}
               priority
+              className="pulse-animation"
             />
           </div>
         </div>
@@ -222,8 +236,8 @@ export default function LandingPage() {
         </section>
       </main>
       
-      {/* Footer */}
-      <footer className="bg-sky-300 text-white py-8">
+      {/* Footer - Add relative and z-10 to appear above grid */}
+      <footer id="privacy" className="bg-sky-300/90 backdrop-blur-sm text-white py-8 relative z-10" style={{ scrollMarginTop: '100px' }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
             <div className="flex items-center mb-6 md:mb-0">
@@ -241,10 +255,10 @@ export default function LandingPage() {
                 Home
               </Link>
               <Link href="/inquire" className="text-white hover:text-blue-100 text-lg">
-                Inquire
+                Sign Up
               </Link>
-              <Link href="/privacy" className="text-white hover:text-blue-100 text-lg">
-                Privacy Policy
+              <Link href="#privacy" className="text-white hover:text-blue-100 text-lg">
+                Pricing
               </Link>
             </div>
           </div>

@@ -54,7 +54,7 @@ export default function SignupPage() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24">
             <div className="w-full max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8 text-center">Hospital Inquiry Form</h1>
+                <h1 className="text-4xl font-bold mb-8 text-center text-blue-500">Hospital Inquiry Form</h1>
                 <div className="bg-white rounded-lg p-8 shadow-lg">
                     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                         <div>
@@ -137,7 +137,7 @@ export default function SignupPage() {
                         <div className="col-span-2 flex justify-center mt-4">
                             <button
                                 type="submit"
-                                className="bg-blue-100 text-black px-8 py-2 rounded-lg hover:bg-blue-200 transition-colors"
+                                className="bg-blue-100 text-black px-8 py-2 rounded-lg hover:bg-blue-200 transition-colors cursor-pointer"
                             >
                                 Submit
                             </button>
