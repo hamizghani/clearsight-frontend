@@ -78,13 +78,15 @@ export default function LandingPage() {
           <div className="max-w-4xl mx-auto rounded-lg overflow-hidden">
             {/* YOUTUBE VIDEO: Replace with your actual YouTube embed */}
             <div className="relative pt-[56.25%]">
-              <iframe 
+                <iframe 
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://youtu.be/_C02Amnr2D4?si=oWhiuwJyWpbclk5S" 
-                title="ClearSight AI Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                src="https://www.youtube.com/embed/_C02Amnr2D4?si=iP22c8bjY-ZK7MH-" 
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-              ></iframe>
+                ></iframe>
             </div>
           </div>
         </section>

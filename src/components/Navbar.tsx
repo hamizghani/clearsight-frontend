@@ -8,61 +8,72 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/dashboard">
-            <Logo1 />
-        </Link>
-        <ul className="flex gap-4">
-          <li>
-            <Link href="/dashboard">
-              <p className="hover:underline text-xl">Home</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/history">
-              <p className="hover:underline text-xl">History</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/payment">
-              <p className="hover:underline text-xl">Top Up</p>
-            </Link>
-          </li>
-          <li className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="hover:underline text-xl"
-            >
-              Information
-            </button>
-            {isDropdownOpen && (
-              <ul className="absolute bg-gray-700 text-white mt-2 p-2 rounded shadow-lg">
-                <li className="hover:bg-gray-600 p-2 rounded text-xl">
-                  <Link href="/info/about">
-                    <p>About Us</p>
-                  </Link>
-                </li>
-                <li className="hover:bg-gray-600 p-2 rounded text-xl">
-                  <Link href="/info/contact">
-                    <p>Contact</p>
-                  </Link>
-                </li>
-                <li className="hover:bg-gray-600 p-2 rounded text-xl">
-                  <Link href="/info/policy">
-                    <p>Privacy Policy</p>
-                  </Link>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li>
-            <Link href="/profile">
-              <p className="text-xl hover:underline">Profile</p>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <header className="sticky top-0 z-10 font-poppins">
+      <nav
+        className="py-2 shadow-sm"
+        style={{
+          backgroundImage: 'linear-gradient(to right, #4facfe, #00f2fe)', // Gradient background
+        }}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <Logo1 color="text-sky-500" />
+          </div>
+
+          <ul className="flex items-center space-x-6">
+            <li>
+              <Link href="/dashboard" className="text-white hover:text-blue-200">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/history" className="text-white hover:text-blue-200">
+                History
+              </Link>
+            </li>
+            <li>
+              <Link href="/payment" className="text-white hover:text-blue-200">
+                Top Up
+              </Link>
+            </li>
+            <li className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-white hover:text-blue-200"
+              >
+                Information
+              </button>
+              {isDropdownOpen && (
+                <ul className="absolute bg-gray-700 text-white mt-2 p-2 rounded shadow-lg">
+                  <li className="hover:bg-gray-600 p-2 rounded">
+                    <Link href="/info/about">
+                      <p>About Us</p>
+                    </Link>
+                  </li>
+                  <li className="hover:bg-gray-600 p-2 rounded">
+                    <Link href="/info/contact">
+                      <p>Contact</p>
+                    </Link>
+                  </li>
+                  <li className="hover:bg-gray-600 p-2 rounded">
+                    <Link href="/info/policy">
+                      <p>Privacy Policy</p>
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <Link
+                href="/profile"
+                className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-1 rounded-md"
+              >
+                Profile
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
   );
 }
