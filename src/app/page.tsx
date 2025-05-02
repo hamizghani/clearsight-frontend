@@ -25,17 +25,17 @@ export default function LandingPage() {
             <Logo1 color="text-sky-500" />
           </div>
           
-          <nav className="flex items-center space-x-6">
-            <Link href="/" className="text-gray-700 hover:text-blue-500">
+          <nav className="flex items-center space-x-10">
+            <Link href="/" className="text-gray-700 hover:text-blue-500 text-2xl">
               Home
             </Link>
-            <Link href="/signup" className="text-gray-700 hover:text-blue-500">
+            <Link href="/signup" className="text-gray-700 hover:text-blue-500 text-2xl">
               Sign Up
             </Link>
-            <Link href="#privacy" className="text-gray-700 hover:text-blue-500">
+            <Link href="#privacy" className="text-gray-700 hover:text-blue-500 text-2xl">
               Pricing
             </Link>
-            <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-1 rounded-md">
+            <Link href="/login" className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-1 rounded-md text-2xl py-3">
               Log In
             </Link>
           </nav>
@@ -62,13 +62,13 @@ export default function LandingPage() {
             <div className="flex space-x-6">
               <Link 
                 href="/signup" 
-                className="bg-blue-500 text-white px-8 py-4 rounded-full text-xl font-medium hover:bg-blue-600"
+                className="bg-blue-500 text-white px-8 py-4 rounded-xl text-xl font-medium hover:bg-blue-600"
               >
                 Join Us Now!
               </Link>
               <Link 
                 href="#what-is-dr" 
-                className="bg-blue-500 text-white px-8 py-4 rounded-full text-xl font-medium hover:bg-blue-600"
+                className="bg-blue-500 text-white px-8 py-4 rounded-xl text-xl font-medium hover:bg-blue-600"
               >
                 Learn More
               </Link>
@@ -93,11 +93,13 @@ export default function LandingPage() {
             {/* YOUTUBE VIDEO: Replace with your actual YouTube embed */}
             <div className="relative pt-[56.25%]">
               <iframe 
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://youtu.be/_C02Amnr2D4?si=oWhiuwJyWpbclk5S" 
-                title="ClearSight AI Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
+          className="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/_C02Amnr2D4?si=iP22c8bjY-ZK7MH-" 
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
               ></iframe>
             </div>
           </div>
@@ -111,7 +113,7 @@ export default function LandingPage() {
         >
           <h2 className="text-2xl font-bold text-center mb-6">What is DR?</h2>
           <div className="max-w-4xl mx-auto">
-            <p className="mb-4">
+            <p className="mb-4 text-xl">
               <span className="text-blue-500 font-medium">Diabetic Retinopathy (DR)</span> is the leading cause of blindness. Limited access to 
               specialists and diagnostic tools delays early detection, especially in underserved
               areas. As DR becomes increasingly common among adults, it highlights the need
@@ -121,25 +123,64 @@ export default function LandingPage() {
         </section>
         
         {/* Why is it concerning Section */}
-        <section className="container mx-auto px-4 py-12 bg-gray-50">
+        <section className="container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-center mb-8">Why is it concerning?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Stat 1 */}
-            <div className="bg-blue-500 text-white rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold mb-2">43.1%</div>
-              <p>of diabetic patients in Indonesia have diabetic retinopathy</p>
+            <div className="w-full group/card">
+              <div 
+                className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
+                style={{
+                  backgroundImage: "url('/diabetic.jpg')",
+                }}
+              >
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
+                <div className="flex flex-col justify-between h-full relative z-10">
+                  <div className="text-5xl font-bold text-white mb-4">43.1%</div>
+                  <p className="text-lg text-white">
+                    of diabetic patients in Indonesia have diabetic retinopathy
+                  </p>
+                </div>
+              </div>
             </div>
             
             {/* Stat 2 */}
-            <div className="bg-blue-500 text-white rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold mb-2">{'< 25%'}</div>
-              <p>of individuals with vision-threatening DR receive proper treatment within a year of diagnosis</p>
+            <div className="w-full group/card">
+              <div 
+                className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
+                style={{
+                  backgroundImage: "url('/diabetic.jpg')",
+                }}
+              >
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
+                <div className="flex flex-col justify-between h-full relative z-10">
+                  <div className="text-5xl font-bold text-white mb-4">{'< 25%'}</div>
+                  <p className="text-lg text-white">
+                    of individuals with vision-threatening DR receive proper treatment within a year of diagnosis
+                  </p>
+                </div>
+              </div>
             </div>
             
             {/* Stat 3 */}
-            <div className="bg-blue-500 text-white rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold mb-2">$2.4 B</div>
-              <p>was estimated to manage DR, and projected to escalate to $18.9 billion by 2025</p>
+            <div className="w-full group/card">
+              <div 
+                className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
+                style={{
+                  backgroundImage: "url('/diabetic.jpg')",
+                }}
+              >
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
+                <div className="flex flex-col justify-between h-full relative z-10">
+                  <div className="text-5xl font-bold text-white mb-4">$2.4 B</div>
+                  <p className="text-lg text-white">
+                    was estimated to manage DR, and projected to escalate to $18.9 billion by 2025
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
