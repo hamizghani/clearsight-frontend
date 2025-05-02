@@ -2,7 +2,12 @@
 
 
 /* Add this to your globals.css */
-
+html {
+  scroll-behavior: smooth;
+}
+#what-is-dr {
+  scroll-margin-top: 100px;
+}
 .gradient-border {
     position: relative;
     border-radius: 0.5rem;
