@@ -38,7 +38,7 @@ export default function DashboardPage() {
           <p className="text-lg mb-4">
             Fill out the form and upload your patient’s scan to detect Diabetic Retinopathy!
           </p>
-          <Link href="/detect/patient-background" className="inline-block">
+          <Link href="/detect" className="inline-block">
             <button className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600">
               Detect Now!
             </button>
