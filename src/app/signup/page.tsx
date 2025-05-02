@@ -2,26 +2,44 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Select from 'react-select';
 
-
+const hospitalOptions = [
+    { value: 'rspi', label: 'Rumah Sakit Pondok Indah' },
+    { value: 'siloam', label: 'Siloam Hospitals Kebon Jeruk' },
+    { value: 'rshs', label: 'Rumah Sakit Hasan Sadikin' },
+    { value: 'rsud', label: 'RSUD Dr. Soetomo' },
+    { value: 'rsup', label: 'RSUP Dr. Kariadi' },
+    { value: 'rscm', label: 'RS Cipto Mangunkusumo' },
+    { value: 'brawijaya', label: 'Rumah Sakit Brawijaya' },
+    { value: 'dharmais', label: 'RS Kanker Dharmais' },
+    { value: 'premiere', label: 'RS Premier Bintaro' },
+    { value: 'medistra', label: 'RS Medistra Jakarta' },
+];
 
 export default function SignupPage() {
     const router = useRouter();
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<{
+        hospitalName: { value: string; label: string; } | null;
+        adminName: string;
+        phoneNumber: string;
+        email: string;
+        address: string;
+    }>({
+        hospitalName: null,
+        adminName: '',
+        phoneNumber: '',
         email: '',
-        password: '',
-        confirmPassword: '',
+        address: '',
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Add your signup logic here
         try {
-            // Make API call to signup endpoint
-            console.log('Signup submitted:', formData);
+            console.log('Form submitted:', formData);
             router.push('/login');
         } catch (error) {
-            console.error('Signup error:', error);
+            console.error('Submission error:', error);
         }
     };
 
@@ -35,52 +53,97 @@ export default function SignupPage() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24">
-            <div className="w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center">Sign Up</h1>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="email" className="block mb-1">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password" className="block mb-1">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="confirmPassword" className="block mb-1">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                    >
-                        Sign Up
-                    </button>
-                </form>
+            <div className="w-full max-w-4xl">
+                <h1 className="text-4xl font-bold mb-8 text-center">Hospital Inquiry Form</h1>
+                <div className="bg-white rounded-lg p-8 shadow-lg">
+                    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
+                        <div>
+                            <label htmlFor="hospitalName" className="block mb-2">
+                                Hospital Name <span className="text-red-500">*</span>
+                            </label>
+                            <Select
+                                id="hospitalName"
+                                options={hospitalOptions}
+                                value={formData.hospitalName}
+                                onChange={(option) => setFormData(prev => ({
+                                    ...prev,
+                                    hospitalName: option
+                                }))}
+                                className="w-full"
+                                placeholder="Search hospital..."
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="adminName" className="block mb-2">
+                                Administrator Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="adminName"
+                                name="adminName"
+                                value={formData.adminName}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-blue-50"
+                                placeholder="Type here..."
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="phoneNumber" className="block mb-2">
+                                Phone Number <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                value={formData.phoneNumber}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-blue-50"
+                                placeholder="Type here..."
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block mb-2">
+                                Email Address <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-blue-50"
+                                placeholder="Type here..."
+                                required
+                            />
+                        </div>
+                        <div className="col-span-2">
+                            <label htmlFor="address" className="block mb-2">
+                                Hospital Address <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="address"
+                                name="address"
+                                value={formData.address}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-lg bg-blue-50"
+                                placeholder="Type here..."
+                                required
+                            />
+                        </div>
+                        <div className="col-span-2 flex justify-center mt-4">
+                            <button
+                                type="submit"
+                                className="bg-blue-100 text-black px-8 py-2 rounded-lg hover:bg-blue-200 transition-colors"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
     );
