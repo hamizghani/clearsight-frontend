@@ -1,3 +1,4 @@
+import Logo1 from '@/components/Logo1';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,23 +9,15 @@ export default function LandingPage() {
       <header className="bg-white shadow-sm py-2 sticky top-0 z-10">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
-            {/* CUSTOM LOGO: Replace with your own logo file */}
-            <Image
-              src="/clearsight-logo-1.png" // Replace with your logo path
-              alt="ClearSight AI Logo"
-              width={40} // Fixed width
-              height={40} // Fixed height
-              className="mr-2"
-            />
-            <span className="text-blue-500 font-semibold">ClearSight AI</span>
+            <Logo1 color="text-sky-500" />
           </div>
           
           <nav className="flex items-center space-x-6">
             <Link href="/" className="text-gray-700 hover:text-blue-500">
               Home
             </Link>
-            <Link href="/inquire" className="text-gray-700 hover:text-blue-500">
-              Inquire
+            <Link href="/signup" className="text-gray-700 hover:text-blue-500">
+              Sign Up
             </Link>
             <Link href="/privacy" className="text-gray-700 hover:text-blue-500">
               Privacy Policy
@@ -61,7 +54,7 @@ export default function LandingPage() {
                 Join Us Now!
               </Link>
               <Link 
-                href="/about" 
+                href="#what-is-dr" 
                 className="bg-blue-500 text-white px-8 py-4 rounded-full text-xl font-medium hover:bg-blue-600"
               >
                 Learn More
@@ -97,7 +90,11 @@ export default function LandingPage() {
         </section>
         
         {/* What is DR Section */}
-        <section className="container mx-auto px-4 py-12">
+        <section
+          id="what-is-dr"
+          className="container mx-auto px-4 py-12 relative"
+          style={{ scrollMarginTop: '100px' }} // Adjust the offset
+        >
           <h2 className="text-2xl font-bold text-center mb-6">What is DR?</h2>
           <div className="max-w-4xl mx-auto">
             <p className="mb-4">
@@ -226,7 +223,7 @@ export default function LandingPage() {
       </main>
       
       {/* Footer */}
-      <footer className="bg-blue-500 text-white py-8">
+      <footer className="bg-sky-300 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
             <div className="flex items-center mb-6 md:mb-0">
