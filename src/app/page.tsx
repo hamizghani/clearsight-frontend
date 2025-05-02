@@ -114,7 +114,7 @@ export default function LandingPage() {
           <h2 className="text-2xl font-bold text-center mb-6">What is DR?</h2>
           <div className="max-w-4xl mx-auto">
             <p className="mb-4 text-xl">
-              <span className="text-blue-500 font-medium">Diabetic Retinopathy (DR)</span> is the leading cause of blindness. Limited access to 
+              <span className="text-blue-500 font-bold">Diabetic Retinopathy (DR)</span> is the leading cause of blindness. Limited access to 
               specialists and diagnostic tools delays early detection, especially in underserved
               areas. As DR becomes increasingly common among adults, it highlights the need
               for earlier and more accurate diagnosis.
@@ -127,56 +127,56 @@ export default function LandingPage() {
           <h2 className="text-2xl font-bold text-center mb-8">Why is it concerning?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Stat 1 */}
-            <div className="w-full group/card">
+            <div className="w-full group/card transition-transform duration-300 hover:scale-105">
               <div 
                 className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
                 style={{
                   backgroundImage: "url('/diabetic.jpg')",
                 }}
               >
-                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/40 to-blue-600/40"></div>
                 <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
-                <div className="flex flex-col justify-between h-full relative z-10">
-                  <div className="text-5xl font-bold text-white mb-4">43.1%</div>
-                  <p className="text-lg text-white">
+                <div className="flex flex-col justify-center items-center h-full relative z-10 text-center">
+                  <div className="text-7xl font-bold text-white mb-6">43.1%</div>
+                  <p className="text-lg text-white px-4 text-violet font-bold">
                     of diabetic patients in Indonesia have diabetic retinopathy
                   </p>
                 </div>
               </div>
             </div>
-            
+
             {/* Stat 2 */}
-            <div className="w-full group/card">
+            <div className="w-full group/card transition-transform duration-300 hover:scale-105">
               <div 
                 className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
                 style={{
                   backgroundImage: "url('/diabetic.jpg')",
                 }}
               >
-                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/40 to-blue-600/40"></div>
                 <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
-                <div className="flex flex-col justify-between h-full relative z-10">
-                  <div className="text-5xl font-bold text-white mb-4">{'< 25%'}</div>
-                  <p className="text-lg text-white">
+                <div className="flex flex-col justify-center items-center h-full relative z-10 text-center">
+                  <div className="text-7xl font-bold text-white mb-6">{'< 25%'}</div>
+                  <p className="text-lg text-white font-bold px-4">
                     of individuals with vision-threatening DR receive proper treatment within a year of diagnosis
                   </p>
                 </div>
               </div>
             </div>
-            
+
             {/* Stat 3 */}
-            <div className="w-full group/card">
+            <div className="w-full group/card transition-transform duration-300 hover:scale-105">
               <div 
                 className="cursor-pointer overflow-hidden relative h-72 rounded-lg shadow-xl p-6 bg-cover bg-center"
                 style={{
                   backgroundImage: "url('/diabetic.jpg')",
                 }}
               >
-                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/60 to-blue-600/60"></div>
+                <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-br from-blue-400/40 to-blue-600/40"></div>
                 <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black/60"></div>
-                <div className="flex flex-col justify-between h-full relative z-10">
-                  <div className="text-5xl font-bold text-white mb-4">$2.4 B</div>
-                  <p className="text-lg text-white">
+                <div className="flex flex-col justify-center items-center h-full relative z-10 text-center">
+                  <div className="text-7xl font-bold text-white mb-6">$2.4 B</div>
+                  <p className="text-lg text-white font-bold px-4">
                     was estimated to manage DR, and projected to escalate to $18.9 billion by 2025
                   </p>
                 </div>
@@ -234,43 +234,107 @@ export default function LandingPage() {
           </div>
         </section>
         
-        {/* Pricing Section with Gradient Background */}
+        {/* Pricing Section with Gray Background */}
         <section className="container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-center mb-8">Pricing Information</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {/* Plan 1 */}
-            <div className="rounded-lg overflow-hidden">
-              <div className="bg-gradient-to-b from-blue-400 to-blue-600 text-white p-6 text-center">
-                <div className="text-5xl font-bold mb-1">50</div>
-                <div className="text-2xl font-semibold mb-6">CREDITS</div>
-                <div className="text-xl font-medium text-black">99.000 IDR</div>
+            {/* Plan Card */}
+            <div className="transform transition-all duration-300 hover:scale-105">
+              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
+                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="text-5xl font-bold mb-1 text-gray-800">50</div>
+                      <Image 
+                        src="/coin.png"
+                        alt="Credit Coin"
+                        width={40}
+                        height={40}
+                        className="mb-1"
+                      />
+                    </div>
+                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
+                  </div>
+                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
+                    <div className="text-xl font-bold group-hover:text-white">99.000 IDR</div>
+                  </button>
+                </div>
               </div>
             </div>
             
-            {/* Plan 2 */}
-            <div className="rounded-lg overflow-hidden">
-              <div className="bg-gradient-to-b from-blue-400 to-blue-600 text-white p-6 text-center">
-                <div className="text-5xl font-bold mb-1">100</div>
-                <div className="text-2xl font-semibold mb-6">CREDITS</div>
-                <div className="text-xl font-medium text-black">189.000 IDR</div>
+            {/* Plan Card */}
+            <div className="transform transition-all duration-300 hover:scale-105">
+              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
+                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="text-5xl font-bold mb-1 text-gray-800">100</div>
+                      <Image 
+                        src="/coin.png"
+                        alt="Credit Coin"
+                        width={40}
+                        height={40}
+                        className="mb-1"
+                      />
+                    </div>
+                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
+                  </div>
+                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
+                    <div className="text-xl font-bold group-hover:text-white">189.000 IDR</div>
+                  </button>
+                </div>
               </div>
             </div>
             
-            {/* Plan 3 */}
-            <div className="rounded-lg overflow-hidden">
-              <div className="bg-gradient-to-b from-blue-400 to-blue-600 text-white p-6 text-center">
-                <div className="text-5xl font-bold mb-1">200</div>
-                <div className="text-2xl font-semibold mb-6">CREDITS</div>
-                <div className="text-xl font-medium text-black">299.000 IDR</div>
+            {/* Plan Card */}
+            <div className="transform transition-all duration-300 hover:scale-105">
+              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
+                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="text-5xl font-bold mb-1 text-gray-800">200</div>
+                      <Image 
+                        src="/coin.png"
+                        alt="Credit Coin"
+                        width={40}
+                        height={40}
+                        className="mb-1"
+                      />
+                    </div>
+                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
+                  </div>
+                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
+                    <div className="text-xl font-bold group-hover:text-white">299.000 IDR</div>
+                  </button>
+                </div>
               </div>
             </div>
             
-            {/* Plan 4 */}
-            <div className="rounded-lg overflow-hidden">
-              <div className="bg-gradient-to-b from-blue-400 to-blue-600 text-white p-6 text-center">
-                <div className="text-5xl font-bold mb-1">500</div>
-                <div className="text-2xl font-semibold mb-6">CREDITS</div>
-                <div className="text-xl font-medium text-black">499.000 IDR</div>
+            {/* Plan Card */}
+            <div className="transform transition-all duration-300 hover:scale-105">
+              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
+                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="text-5xl font-bold mb-1 text-gray-800">500</div>
+                      <Image 
+                        src="/coin.png"
+                        alt="Credit Coin"
+                        width={40}
+                        height={40}
+                        className="mb-1"
+                      />
+                    </div>
+                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
+                  </div>
+                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
+                    <div className="text-xl font-bold group-hover:text-white">499.000 IDR</div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

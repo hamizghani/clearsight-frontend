@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Select from 'react-select';
+import Image from 'next/image';
 
 const hospitalOptions = [
     { value: 'rspi', label: 'Rumah Sakit Pondok Indah' },
@@ -54,7 +55,17 @@ export default function SignupPage() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24">
             <div className="w-full max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8 text-center text-blue-500">Hospital Inquiry Form</h1>
+                <div className="flex flex-col items-center mb-8">
+                    <Image
+                        src="/clearsight-logo-1.png"
+                        alt="ClearSight Logo"
+                        width={150}
+                        height={150}
+                        priority
+                        className="mb-4"
+                    />
+                    <h1 className="text-4xl font-bold text-center text-blue-500">Hospital Inquiry Form</h1>
+                </div>
                 <div className="bg-white rounded-lg p-8 shadow-lg">
                     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                         <div>

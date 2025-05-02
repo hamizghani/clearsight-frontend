@@ -32,20 +32,21 @@ export default function LoginPage() {
 
     return (
         <main className="flex min-h-screen">
-            <div className="w-1/2 flex items-center justify-center">
-                <div className="text-center">
+            <div className="w-1/2 flex items-center justify-center mx-auto">
+                <div className="flex flex-col items-center justify-center w-full">
                     <Image
                         src="/clearsight-logo-1.png"
                         alt="ClearSight Logo"
                         width={200}
                         height={200}
                         className="mb-4"
+                        priority
                     />
-                    <h1 className="text-5xl font-bold text-[#58B7E9]">ClearSight AI </h1>
+                    <h1 className="text-5xl font-bold text-[#58B7E9]">ClearSight AI</h1>
                 </div>
             </div>
             
-            <div className="w-1/2 flex items-center justify-center bg-gradient-to-br from-[#58B7E9] to-[#9AD4F3] rounded-l-[50px]">
+            <div className="w-1/2 flex items-center justify-center bg-gradient-to-br from-[#2B6CB0] to-[#4299E1] rounded-l-[50px]">
                 <div className="w-[400px] p-8">
                     <h2 className="text-4xl font-bold text-white mb-8">Log In</h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
