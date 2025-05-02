@@ -1,39 +1,90 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Navbar from '@/components/Navbar';
+import Head from 'next/head';
+import { useState } from 'react';
+import Navbar from '@/components/Navbar'; // Import the Navbar component
 
-const ContactPage = () => {
-    return (
-        <div>
-            <Navbar />
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
-                <div className="max-w-2xl">
-                    <p className="mb-4">
-                        We'd love to hear from you. Please get in touch using the information below.
-                    </p>
-                    <div className="space-y-4">
-                        <div>
-                            <h2 className="text-xl font-semibold">Email</h2>
-                            <p>info@clearsight.com</p>
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-semibold">Phone</h2>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-semibold">Address</h2>
-                            <p>123 Business Street</p>
-                            <p>Suite 100</p>
-                            <p>City, State 12345</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+export default function Contact() {
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Handle the form submission logic here
+    console.log('Message submitted:', message);
+    // Reset the form
+    setMessage('');
+    // You might want to show a success message or redirect
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col font-['Poppins']">
+      <Head>
+        <title>Contact - ClearSight AI</title>
+        <meta name="description" content="Contact ClearSight AI for support or information" />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      {/* Navigation Bar */}
+      <Navbar />
+
+      {/* Contact Content */}
+      <div className="flex-1 max-w-6xl w-full mx-auto p-8">
+        <h1 className="text-5xl font-bold text-center mb-4">Contact</h1>
         
-    );
-};
-
-export default ContactPage;
+        <p className="text-center text-lg mb-8">
+          Contact us to report a problem, clarify any doubts<br />
+          about ClearSight AI, or just find out more.
+        </p>
+        
+        {/* Contact Form */}
+        <form onSubmit={handleSubmit} className="mb-8">
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type your message here..."
+            className="w-full h-60 bg-gray-100 p-4 rounded-md resize-none focus:outline-none"
+            required
+          ></textarea>
+          
+          <div className="flex justify-center mt-4">
+            <button 
+              type="submit" 
+              className="bg-gray-200 hover:bg-gray-300 text-black px-6 py-2 rounded-md transition duration-300"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        
+        {/* FAQ Section */}
+        <div className="bg-gray-200 p-6 rounded-md">
+          <h2 className="font-bold text-xl mb-4">FAQ:</h2>
+          
+          <div className="mb-4">
+            <p className="font-medium">Q: How does ClearSight AI work?</p>
+            <p>A: ClearSight AI uses advanced machine learning to analyze retinal images with high precision, providing real-time second opinions for medical professionals.</p>
+          </div>
+          
+          <div className="mb-4">
+            <p className="font-medium">Q: Who can benefit from ClearSight AI?</p>
+            <p>A: Healthcare providers, especially in underserved areas with limited specialist access, and the 43.1% of diabetic patients in Indonesia who have diabetic retinopathy.</p>
+          </div>
+          
+          <div className="mb-4">
+            <p className="font-medium">Q: How accurate is ClearSight AI's detection?</p>
+            <p>A: ClearSight AI significantly improves screening accuracy, reducing misdiagnosis rates compared to traditional methods.</p>
+          </div>
+          
+          <div>
+            <p className="font-medium">Q: How quickly can I get results?</p>
+            <p>A: ClearSight AI provides results in seconds, speeding up the diagnosis process that traditionally could take up to an hour.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

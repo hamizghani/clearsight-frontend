@@ -5,12 +5,12 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 
 export default function TopUp() {
-const creditOptions = [
-    { credits: 50, price: '99.000 IDR', path: '/payment/id/payment50' },
-    { credits: 100, price: '189.000 IDR', path: '/payment/id/100' },
-    { credits: 200, price: '299.000 IDR', path: '/payment/id/200' },
-    { credits: 500, price: '499.000 IDR', path: '/payment/id/500' },
-];
+  const creditOptions = [
+    { credits: 50, price: '99.000 IDR' },
+    { credits: 100, price: '189.000 IDR' },
+    { credits: 200, price: '299.000 IDR' },
+    { credits: 500, price: '499.000 IDR' },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col font-['Poppins']">
@@ -29,31 +29,45 @@ const creditOptions = [
 
       {/* Pricing content section */}
       <main className="flex-1 flex flex-col items-center max-w-6xl mx-auto w-full p-8">
-        <h1 className="text-5xl font-bold text-center my-12">Top Up Credits</h1>
+        <h1 className="text-5xl font-bold text-center my-12 font-['Poppins']">Top Up Credits</h1>
 
         <div className="flex flex-wrap justify-center gap-6 w-full mb-12">
           {creditOptions.map((option, index) => (
             <Link 
               key={index} 
-              href={option.path}
-              className="relative bg-[#59b4ff] text-white w-56 h-60 rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:-translate-y-1 transition-transform"
+              href={`/payment/id/${option.credits}`}
+              className="group relative w-56 h-60 rounded-lg cursor-pointer"
             >
-              <div className="text-6xl font-bold">
-                {option.credits}
+              {/* Card with gradient background */}
+              <div className={`
+                w-full h-full rounded-lg flex flex-col items-center justify-center p-6
+                transition-transform duration-300 group-hover:-translate-y-2
+                ${index === 0 ? 'bg-gradient-to-b from-[#59b4ff] to-[#a6d7ff]' : ''}
+                ${index === 1 ? 'bg-gradient-to-b from-[#4fa9fd] to-[#a6d7ff]' : ''}
+                ${index === 2 ? 'bg-gradient-to-b from-[#4298ea] to-[#a6d7ff]' : ''}
+                ${index === 3 ? 'bg-gradient-to-b from-[#3387d6] to-[#a6d7ff]' : ''}
+              `}>
+                <div className="text-6xl font-bold text-white font-['Poppins']">
+                  {option.credits}
+                </div>
+                <div className="text-2xl font-semibold text-white font-['Poppins']">
+                  CREDITS
+                </div>
+                <div className="text-xl mt-6 text-white font-['Poppins']">
+                  {option.price}
+                </div>
               </div>
-              <div className="text-2xl font-semibold">
-                CREDITS
+              
+              {/* Circle at bottom */}
+              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
+                <div className="w-8 h-8 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               </div>
-              <div className="text-xl mt-6">
-                {option.price}
-              </div>
-              <div className="absolute -bottom-5 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md"></div>
             </Link>
           ))}
         </div>
 
         <div className="flex flex-col items-center w-full mt-8">
-          <p className="text-xl font-medium mb-4">We take</p>
+          <p className="text-xl font-medium mb-4 font-['Poppins']">We take</p>
           <Image
             src="/payments.png" 
             alt="Payment methods"
