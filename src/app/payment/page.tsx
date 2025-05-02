@@ -25,25 +25,7 @@ const creditOptions = [
       </Head>
 
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center px-8 py-2 bg-[#59b4ff] text-white">
-        <div className="flex items-center gap-2">
-          <Image 
-            src="/clearsight-logo-1.png" 
-            alt="ClearSight AI" 
-            width={50} 
-            height={50}
-          />
-          <span className="text-2xl font-semibold">ClearSight AI</span>
-        </div>
-        <div className="flex gap-6 items-center">
-          <Link href="/" className="font-medium">Home</Link>
-          <Link href="/history" className="font-medium">History</Link>
-          <Link href="/top-up" className="font-medium">Top Up</Link>
-          <Link href="/information" className="font-medium">Information</Link>
-          <Link href="/privacy-policy" className="font-medium">Privacy Policy</Link>
-          <Link href="/profile" className="bg-white text-gray-800 px-6 py-2 rounded-full font-medium">Profile</Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Pricing content section */}
       <main className="flex-1 flex flex-col items-center max-w-6xl mx-auto w-full p-8">
