@@ -1,3 +1,15 @@
+# 🧠 ClearSight AI — Frontend
+
+ClearSight AI is a web application that empowers users to detect **Diabetic Retinopathy** using an AI-powered retinal image analysis system. This is the frontend implementation built using **Next.js App Router** and **Tailwind CSS**.
+
+## 🚀 Tech Stack
+
+- [Next.js 14 (App Router)](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ShadCN/UI](https://ui.shadcn.com/)
+- API Integration with FastAPI (Python)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
