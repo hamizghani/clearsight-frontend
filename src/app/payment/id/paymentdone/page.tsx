@@ -80,7 +80,7 @@ export default function PurchaseConfirmation() {
               <p className="text-xl text-gray-600 mb-8 text-center">The invoice has been sent to your email</p>
               
               <Link 
-                href="/home" 
+                href="/dashboard" 
                 className="bg-blue-500 text-white px-10 py-3 rounded flex items-center text-lg font-medium"
               >
                 Return Home

@@ -243,16 +243,7 @@ export default function LandingPage() {
               <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
                 <div className="p-8 text-center h-[300px] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="text-5xl font-bold mb-1 text-gray-800">50</div>
-                      <Image 
-                        src="/coin.png"
-                        alt="Credit Coin"
-                        width={40}
-                        height={40}
-                        className="mb-1"
-                      />
-                    </div>
+                    <div className="text-5xl font-bold mb-1 text-gray-800">50</div>
                     <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
                   </div>
                   <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
@@ -268,16 +259,7 @@ export default function LandingPage() {
               <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
                 <div className="p-8 text-center h-[300px] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="text-5xl font-bold mb-1 text-gray-800">100</div>
-                      <Image 
-                        src="/coin.png"
-                        alt="Credit Coin"
-                        width={40}
-                        height={40}
-                        className="mb-1"
-                      />
-                    </div>
+                    <div className="text-5xl font-bold mb-1 text-gray-800">100</div>
                     <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
                   </div>
                   <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
@@ -293,16 +275,7 @@ export default function LandingPage() {
               <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
                 <div className="p-8 text-center h-[300px] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="text-5xl font-bold mb-1 text-gray-800">200</div>
-                      <Image 
-                        src="/coin.png"
-                        alt="Credit Coin"
-                        width={40}
-                        height={40}
-                        className="mb-1"
-                      />
-                    </div>
+                    <div className="text-5xl font-bold mb-1 text-gray-800">200</div>
                     <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
                   </div>
                   <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
@@ -318,16 +291,7 @@ export default function LandingPage() {
               <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
                 <div className="p-8 text-center h-[300px] flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="text-5xl font-bold mb-1 text-gray-800">500</div>
-                      <Image 
-                        src="/coin.png"
-                        alt="Credit Coin"
-                        width={40}
-                        height={40}
-                        className="mb-1"
-                      />
-                    </div>
+                    <div className="text-5xl font-bold mb-1 text-gray-800">500</div>
                     <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
                   </div>
                   <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">

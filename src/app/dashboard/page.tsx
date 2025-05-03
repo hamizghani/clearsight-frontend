@@ -1,10 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import { useUserStore } from '@/store/userStore';
 
 export default function DashboardPage() {
+  const credits = useUserStore((state) => state.credits);
+  // Initialize state for dashboard metrics
+  const [dashboardData, setDashboardData] = useState({
+    drDetected: 0,
+    drPrevalence: 0
+  });
+
+  // Example: Fetch data when component mounts
+  useEffect(() => {
+    // You can replace this with actual API call
+    const fetchDashboardData = async () => {
+      try {
+        // Simulate API call  
+        const response = await fetch('/api/dashboard-stats');
+        const data = await response.json();
+        setDashboardData(data);
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -18,20 +43,19 @@ export default function DashboardPage() {
             {/* Credits Used */}
             <div className="bg-white shadow-md rounded-lg p-6 transition-all duration-300 hover:border-2 hover:border-blue-500">
               <h2 className="text-lg font-semibold mb-2">Credits Left</h2>
-              <p className="text-4xl font-bold text-blue-600">250</p>
-              <p className="text-gray-500">/ 500</p>
+              <p className="text-4xl font-bold text-blue-600">{credits}</p>
             </div>
 
             {/* DR Detected */}
             <div className="bg-white shadow-md rounded-lg p-6 transition-all duration-300 hover:border-2 hover:border-blue-500">
               <h2 className="text-lg font-semibold mb-2">DR Detected</h2>
-              <p className="text-4xl font-bold text-blue-600">100</p>
+              <p className="text-4xl font-bold text-blue-600">{dashboardData.drDetected}</p>
             </div>
 
             {/* DR Prevalence */}
             <div className="bg-white shadow-md rounded-lg p-6 transition-all duration-300 hover:border-2 hover:border-blue-500">
               <h2 className="text-lg font-semibold mb-2">DR Prevalence</h2>
-              <p className="text-4xl font-bold text-blue-600">4%</p>
+              <p className="text-4xl font-bold text-blue-600">{dashboardData.drPrevalence}%</p>
             </div>
           </div>
 

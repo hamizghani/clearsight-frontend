@@ -5,15 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
+import { useUserStore } from '@/store/userStore';
 
 export default function Profile() {
+    const credits = useUserStore((state) => state.credits);
     // Sample data for the profile
     const [profileData, setProfileData] = useState({
         hospitalName: 'RS UI',
         hospitalNumber: '(021) 50829292',
         email: 'rsui@ui.ac.id',
         hospitalAddress: 'Jl. Prof. DR. Bahder Djohan, Pondok Cina, Kecamatan Beji, Kota Depok, Jawa Barat 16424',
-        credits: 50
     });
 
     return (
@@ -70,7 +71,7 @@ export default function Profile() {
                     {/* Right column - Credits display */}
                     <div className="flex items-center justify-center">
                         <div className="bg-gradient-to-b from-[#59b4ff] to-[#a6d7ff] rounded-xl w-full max-w-sm p-8 text-center text-white">
-                            <div className="text-8xl font-bold">{profileData.credits}</div>
+                            <div className="text-8xl font-bold">{credits}</div>
                             <div className="text-3xl font-bold mb-4">CREDITS</div>
                             <div className="text-5xl font-bold">LEFT</div>
                         </div>

@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
+import { useProcessStore } from '@/store/processStore';
+import { useUserStore } from '@/store/userStore';
 
 export default function DetectPage() {
   const router = useRouter();
@@ -13,27 +15,52 @@ export default function DetectPage() {
   const [patientSymptom, setPatientSymptom] = useState('');
   const [symptomDuration, setSymptomDuration] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const setProcessComplete = useProcessStore((state) => state.setProcessComplete);
+  const decreaseCredits = useUserStore((state) => state.decreaseCredits);
+  const credits = useUserStore((state) => state.credits);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      setSelectedFile(event.target.files[0]);
+      const file = event.target.files[0];
+      setSelectedFile(file);
+      
+      // Create image preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  const handleProcessClick = () => {
+  // Clean up preview URL on component unmount
+  React.useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
+
+  const handleProcessClick = async () => {
     if (selectedFile && patientName && patientDOB && patientGender) {
+      // Check if user has enough credits
+      if (credits === 0) {
+        alert('Not enough credits. Please purchase more credits to continue.');
+        return;
+      }
+
       setIsSubmitting(true);
-      
-      // In a real implementation, you would upload the file to the server here
-      // For demo purposes, we're simulating a file upload and generating a random ID
-      
-      // Generate a random patient ID (in a real app, this would come from the server)
-      const patientId = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-      
-      // Simulate processing delay
-      setTimeout(() => {
-        // Store the patient data in localStorage for demo purposes
-        // In a real app, this data would be stored on the server
+      try {
+        // Decrease credits first
+        const success = decreaseCredits();
+        if (!success) {
+          throw new Error('Failed to process credits');
+        }
+
+        // Store the patient data
+        const patientId = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
         const patientData = {
           id: patientId,
           name: patientName,
@@ -41,15 +68,23 @@ export default function DetectPage() {
           gender: patientGender,
           symptom: patientSymptom,
           symptomDuration: symptomDuration,
-          // In a real app, we would store the actual image URL after upload
           hasImage: !!selectedFile
         };
         
         localStorage.setItem(`patient-${patientId}`, JSON.stringify(patientData));
         
+        // Set process complete
+        setProcessComplete(true);
+        
         // Navigate to the results page
-        router.push(`/detect/id/${patientId}`);
-      }, 1000);
+        router.push('/detect/result');
+      } catch (error) {
+        console.error('Error processing:', error);
+        setProcessComplete(false);
+        alert('An error occurred while processing. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       alert('Please fill in all required fields and upload an image.');
     }
@@ -138,10 +173,19 @@ export default function DetectPage() {
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="absolute opacity-0 w-full h-full cursor-pointer"
+                className="absolute opacity-0 w-full h-full cursor-pointer z-10"
               />
-              {selectedFile ? (
-                <p className="text-gray-500">{selectedFile.name}</p>
+              {imagePreview ? (
+                <div className="w-full h-full relative">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full h-full object-contain rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
+                    <p className="text-white">Click or drag to replace</p>
+                  </div>
+                </div>
               ) : (
                 <p className="text-gray-500">Upload or Drop Image</p>
               )}
@@ -149,7 +193,7 @@ export default function DetectPage() {
             <button
               type="button"
               onClick={handleProcessClick}
-              className="mt-6 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-blue-400"
+              className="mt-6 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-blue-400 cursor-pointer"
               disabled={!selectedFile || !patientName || !patientDOB || !patientGender || isSubmitting}
             >
               {isSubmitting ? 'Processing...' : 'Process'}

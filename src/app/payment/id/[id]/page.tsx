@@ -6,8 +6,12 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
+import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'next/navigation';
 
 export default function Payment() {
+  const router = useRouter();
+  const addCredits = useUserStore((state) => state.addCredits);
   const { id } = useParams(); // Correctly retrieve the dynamic route parameter
   const [email, setEmail] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -42,6 +46,26 @@ export default function Payment() {
       }
     }
   }, [id]);
+
+  const handleCheckout = () => {
+    if (email && cardNumber && expiryDate && securityCode && nameOnCard) {
+      try {
+        // Add credits to user's account
+        addCredits(credits);
+        
+        // Show success message
+        alert(`Successfully added ${credits} credits to your account!`);
+        
+        // Navigate to payment success page
+        router.push('/payment/id/paymentdone');
+      } catch (error) {
+        console.error('Error processing payment:', error);
+        alert('Payment failed. Please try again.');
+      }
+    } else {
+      alert('Please fill in all required fields');
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col font-['Poppins']">
@@ -153,7 +177,7 @@ export default function Payment() {
 
             <button 
               className="w-full bg-black text-white rounded-full py-4 font-semibold text-xl flex items-center justify-center gap-2"
-              onClick={() => window.location.href = '/payment/id/paymentdone'}
+              onClick={handleCheckout}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1"></circle>
