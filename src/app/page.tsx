@@ -216,7 +216,7 @@ export default function LandingPage() {
                   <div>
                     <h3 className="font-medium">Upload patients scans</h3>
                   </div>
-                </div>
+                </div>  
                 <div className="flex items-start">
                   <div className="bg-blue-500 rounded-full w-4 h-4 mt-1.5 mr-4"></div>
                   <div>
