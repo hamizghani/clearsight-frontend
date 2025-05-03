@@ -102,7 +102,7 @@ export default function DetectPage() {
             <form className="space-y-4">
               <div>
                 <label className="block text-white font-semibold mb-2">
-                  Enter Your Patient's Full Name <span className="text-red-500">*</span>
+                  Enter Your Patients Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -115,7 +115,7 @@ export default function DetectPage() {
               </div>
               <div>
                 <label className="block text-white font-semibold mb-2">
-                  Enter Your Patient's Date of Birth <span className="text-red-500">*</span>
+                  Enter Your Patients Date of Birth <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -127,7 +127,7 @@ export default function DetectPage() {
               </div>
               <div>
                 <label className="block text-white font-semibold mb-2">
-                  Enter Your Patient's Gender <span className="text-red-500">*</span>
+                  Enter Your Patients Gender <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -140,7 +140,7 @@ export default function DetectPage() {
               </div>
               <div>
                 <label className="block text-white font-semibold mb-2">
-                  Enter Your Patient's Symptom
+                  Enter Your Patients Symptom
                 </label>
                 <input
                   type="text"

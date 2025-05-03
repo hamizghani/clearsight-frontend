@@ -1,8 +1,5 @@
 "use client";
 
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
 import { useUserStore } from '@/store/userStore';
@@ -10,7 +7,7 @@ import { useUserStore } from '@/store/userStore';
 export default function Profile() {
     const credits = useUserStore((state) => state.credits);
     // Sample data for the profile
-    const [profileData, setProfileData] = useState({
+    const [profileData] = useState({
         hospitalName: 'RS UI',
         hospitalNumber: '(021) 50829292',
         email: 'rsui@ui.ac.id',

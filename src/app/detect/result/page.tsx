@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,7 +25,7 @@ const DetectResultPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Left Column - Scan Image */}
                     <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 className="text-2xl font-bold mb-4">{result.patientName}'S SCAN</h2>
+                        <h2 className="text-2xl font-bold mb-4">{result.patientName}S SCAN</h2>
                         <div className="relative aspect-square bg-white rounded-lg shadow-md overflow-hidden mb-4">
                             <Image
                                 src={result.imagePath}

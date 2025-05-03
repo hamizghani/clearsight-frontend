@@ -85,7 +85,7 @@ export default function LoginPage() {
                             Log In
                         </button>
                         <p className="text-center text-white mt-4">
-                            Don't have an ID?{' '}
+                            Dont have an ID?{' '}
                             <Link href="/signup" className="underline hover:text-blue-100">
                                 Click Here
                             </Link>

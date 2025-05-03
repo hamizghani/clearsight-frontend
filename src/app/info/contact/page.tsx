@@ -75,7 +75,7 @@ export default function Contact() {
           </div>
           
           <div className="mb-4">
-            <p className="font-medium">Q: How accurate is ClearSight AI's detection?</p>
+            <p className="font-medium">Q: How accurate is ClearSight AIs detection?</p>
             <p>A: ClearSight AI significantly improves screening accuracy, reducing misdiagnosis rates compared to traditional methods.</p>
           </div>
           

@@ -208,13 +208,13 @@ export default function LandingPage() {
                 <div className="flex items-start">
                   <div className="bg-blue-500 rounded-full w-4 h-4 mt-1.5 mr-4"></div>
                   <div>
-                    <h3 className="font-medium">Fill out patient's form</h3>
+                    <h3 className="font-medium">Fill out patients form</h3>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="bg-blue-500 rounded-full w-4 h-4 mt-1.5 mr-4"></div>
                   <div>
-                    <h3 className="font-medium">Upload patient's scans</h3>
+                    <h3 className="font-medium">Upload patients scans</h3>
                   </div>
                 </div>
                 <div className="flex items-start">

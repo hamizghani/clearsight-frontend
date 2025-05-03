@@ -2,7 +2,6 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
@@ -53,14 +52,10 @@ export default function Payment() {
         // Add credits to user's account
         addCredits(credits);
         
-        // Show success message
-        alert(`Successfully added ${credits} credits to your account!`);
-        
-        // Navigate to payment success page
+        // Navigate to payment done page
         router.push('/payment/id/paymentdone');
       } catch (error) {
         console.error('Error processing payment:', error);
-        alert('Payment failed. Please try again.');
       }
     } else {
       alert('Please fill in all required fields');
