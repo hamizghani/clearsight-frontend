@@ -68,10 +68,6 @@ export default function Payment() {
         <title>Checkout - {credits} Credits | ClearSight AI</title>
         <meta name="description" content={`Purchase ${credits} credits for ClearSight AI`} />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       {/* Navigation Bar */}
       <Navbar /> {/* Use the Navbar component */}

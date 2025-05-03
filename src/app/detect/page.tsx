@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import { useProcessStore } from '@/store/processStore';
 import { useUserStore } from '@/store/userStore';
@@ -177,7 +178,7 @@ export default function DetectPage() {
               />
               {imagePreview ? (
                 <div className="w-full h-full relative">
-                  <img
+                  <Image
                     src={imagePreview}
                     alt="Preview"
                     className="w-full h-full object-contain rounded-lg"

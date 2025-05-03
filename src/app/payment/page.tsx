@@ -18,10 +18,6 @@ export default function TopUp() {
         <title>Top Up Credits - ClearSight AI</title>
         <meta name="description" content="Purchase credits for ClearSight AI" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
       {/* Navigation Bar */}

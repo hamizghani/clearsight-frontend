@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
 import { useUserStore } from '@/store/userStore';
 
@@ -16,15 +16,6 @@ export default function Profile() {
 
     return (
         <div className="min-h-screen flex flex-col font-['Poppins']">
-            <Head>
-                <title>Profile - ClearSight AI</title>
-                <meta name="description" content="Your ClearSight AI Profile" />
-                <link rel="icon" href="/favicon.ico" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-                    rel="stylesheet"
-                />
-            </Head>
 
             {/* Navigation Bar */}
             <Navbar /> {/* Use the Navbar component here */}
