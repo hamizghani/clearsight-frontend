@@ -1,12 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar'; // Adjust the import path as necessary
+import { useRouter } from 'next/navigation';
 
 // You can import this Navbar component if you have one, or use the inline one below
 // import Navbar from '@/components/Navbar';
 
 const PrivacyPolicyPage = () => {
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+      }
+    }
+  }, [router]);
+  if (!authChecked) return null;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />

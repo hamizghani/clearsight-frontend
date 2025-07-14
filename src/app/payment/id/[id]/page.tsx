@@ -9,7 +9,6 @@ import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'next/navigation';
 
 export default function Payment() {
-  const router = useRouter();
   const addCredits = useUserStore((state) => state.addCredits);
   const { id } = useParams(); // Correctly retrieve the dynamic route parameter
   const [email, setEmail] = useState('');
@@ -19,7 +18,17 @@ export default function Payment() {
   const [nameOnCard, setNameOnCard] = useState('');
   const [credits, setCredits] = useState(0);
   const [price, setPrice] = useState('');
-
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+      }
+    }
+  }, [router]);
   useEffect(() => {
     // Set credits and price based on the id parameter
     if (id) {
@@ -45,6 +54,7 @@ export default function Payment() {
       }
     }
   }, [id]);
+  if (!authChecked) return null;
 
   const handleCheckout = () => {
     if (email && cardNumber && expiryDate && securityCode && nameOnCard) {

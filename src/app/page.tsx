@@ -94,7 +94,7 @@ export default function LandingPage() {
             <div className="relative pt-[56.25%]">
               <iframe 
           className="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/_C02Amnr2D4?si=iP22c8bjY-ZK7MH-" 
+          src="https://www.youtube.com/embed/Cd4i_wkqAbQ?si=cGiHRqmWZPYkvAtS" 
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -237,66 +237,16 @@ export default function LandingPage() {
         {/* Pricing Section with Gray Background */}
         <section className="container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-center mb-8">Pricing Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {/* Plan Card */}
-            <div className="transform transition-all duration-300 hover:scale-105">
+          <div className="flex justify-center">
+            <div className="transform transition-all duration-300 hover:scale-105 w-full max-w-sm">
               <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
                 <div className="p-8 text-center h-[300px] flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl font-bold mb-1 text-gray-800">50</div>
-                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
+                    <div className="text-5xl font-bold mb-1 text-gray-800">500.000</div>
+                    <div className="text-2xl font-semibold mb-6 text-gray-600">/ month</div>
                   </div>
-                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
-                    <div className="text-xl font-bold group-hover:text-white">99.000 IDR</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Plan Card */}
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
-                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
-                  <div>
-                    <div className="text-5xl font-bold mb-1 text-gray-800">100</div>
-                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
-                  </div>
-                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
-                    <div className="text-xl font-bold group-hover:text-white">189.000 IDR</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Plan Card */}
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
-                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
-                  <div>
-                    <div className="text-5xl font-bold mb-1 text-gray-800">200</div>
-                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
-                  </div>
-                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
-                    <div className="text-xl font-bold group-hover:text-white">299.000 IDR</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Plan Card */}
-            <div className="transform transition-all duration-300 hover:scale-105">
-              <div className="rounded-lg overflow-hidden shadow-lg bg-gray-50 hover:shadow-2xl transition-all duration-300">
-                <div className="p-8 text-center h-[300px] flex flex-col justify-between">
-                  <div>
-                    <div className="text-5xl font-bold mb-1 text-gray-800">500</div>
-                    <div className="text-2xl font-semibold mb-6 text-gray-600">CREDITS</div>
-                  </div>
-                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    <div className="text-sm font-medium mb-1 group-hover:text-gray-100">Purchase Now</div>
-                    <div className="text-xl font-bold group-hover:text-white">499.000 IDR</div>
+                  <button className="group w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-xl font-bold">
+                    Get Started
                   </button>
                 </div>
               </div>

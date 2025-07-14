@@ -1,8 +1,23 @@
+'use client';
 import React from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 export default function AboutUs() {
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+      }
+    }
+  }, [router]);
+  if (!authChecked) return null;
   return (
     <div className="min-h-screen bg-white-900">
       {/* Main Content Container */}

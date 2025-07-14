@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const credits = useUserStore((state) => state.credits);
@@ -13,7 +14,17 @@ export default function DashboardPage() {
     drPrevalence: 0
   });
 
-  // Example: Fetch data when component mounts
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+      }
+    }
+  }, [router]);
   useEffect(() => {
     // You can replace this with actual API call
     const fetchDashboardData = async () => {
@@ -29,6 +40,7 @@ export default function DashboardPage() {
 
     fetchDashboardData();
   }, []);
+  if (!authChecked) return null;
 
   return (
     <div className="min-h-screen flex flex-col">

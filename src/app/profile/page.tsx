@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
 import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'next/navigation';
 
 export default function Profile() {
     const credits = useUserStore((state) => state.credits);
@@ -13,6 +14,18 @@ export default function Profile() {
         email: 'rsui@ui.ac.id',
         hospitalAddress: 'Jl. Prof. DR. Bahder Djohan, Pondok Cina, Kecamatan Beji, Kota Depok, Jawa Barat 16424',
     });
+    const router = useRouter();
+    const [authChecked, setAuthChecked] = useState(false);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                router.replace('/');
+            } else {
+                setAuthChecked(true);
+            }
+        }
+    }, [router]);
+    if (!authChecked) return null;
 
     return (
         <div className="min-h-screen flex flex-col font-['Poppins']">
@@ -69,8 +82,13 @@ export default function Profile() {
                 {/* Log Out Button */}
                 <div className="flex justify-center mt-12">
                     <button 
-                        className="bg-[#59b4ff] text-white text-2xl font-medium py-3 px-12 rounded-md"
-                        onClick={() => window.location.href = '/login'}
+                        className="bg-[#59b4ff] text-white text-2xl font-medium py-3 px-12 rounded-md cursor-pointer transition-transform duration-200 hover:bg-[#388fd6] hover:scale-105"
+                        onClick={() => {
+                            if (typeof window !== 'undefined') {
+                                localStorage.removeItem('isLoggedIn');
+                            }
+                            window.location.href = '/login';
+                        }}
                     >
                         Log Out
                     </button>
