@@ -6,7 +6,12 @@ import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'next/navigation';
 
 export default function Profile() {
-    const credits = useUserStore((state) => state.credits);
+    const [subscriptionEnd, setSubscriptionEnd] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('subscriptionEnd') || 'Not subscribed';
+        }
+        return 'Not subscribed';
+    });
     // Sample data for the profile
     const [profileData] = useState({
         hospitalName: 'RS UI',
@@ -69,12 +74,12 @@ export default function Profile() {
                         </div>
                     </div>
                     
-                    {/* Right column - Credits display */}
+                    {/* Right column - Subscription status */}
                     <div className="flex items-center justify-center">
                         <div className="bg-gradient-to-b from-[#59b4ff] to-[#a6d7ff] rounded-xl w-full max-w-sm p-8 text-center text-white">
-                            <div className="text-8xl font-bold">{credits}</div>
-                            <div className="text-3xl font-bold mb-4">CREDITS</div>
-                            <div className="text-5xl font-bold">LEFT</div>
+                            <div className="text-2xl font-bold mb-4">Subscription Status</div>
+                            <div className="text-lg">Your subscription lasts until:</div>
+                            <div className="text-3xl font-bold mt-2">{subscriptionEnd}</div>
                         </div>
                     </div>
                 </div>

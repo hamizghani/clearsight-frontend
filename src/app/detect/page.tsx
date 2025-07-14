@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import { useProcessStore } from '@/store/processStore';
-import { useUserStore } from '@/store/userStore';
 
 export default function DetectPage() {
   const router = useRouter();
@@ -18,8 +17,6 @@ export default function DetectPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const setProcessComplete = useProcessStore((state) => state.setProcessComplete);
-  const decreaseCredits = useUserStore((state) => state.decreaseCredits);
-  const credits = useUserStore((state) => state.credits);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -46,20 +43,8 @@ export default function DetectPage() {
 
   const handleProcessClick = async () => {
     if (selectedFile && patientName && patientDOB && patientGender) {
-      // Check if user has enough credits
-      if (credits === 0) {
-        alert('Not enough credits. Please purchase more credits to continue.');
-        return;
-      }
-
       setIsSubmitting(true);
       try {
-        // Decrease credits first
-        const success = decreaseCredits();
-        if (!success) {
-          throw new Error('Failed to process credits');
-        }
-
         // Store the patient data
         const patientId = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
         const patientData = {
@@ -71,13 +56,8 @@ export default function DetectPage() {
           symptomDuration: symptomDuration,
           hasImage: !!selectedFile
         };
-        
         localStorage.setItem(`patient-${patientId}`, JSON.stringify(patientData));
-        
-        // Set process complete
         setProcessComplete(true);
-        
-        // Navigate to the results page
         router.push('/detect/result');
       } catch (error) {
         console.error('Error processing:', error);
