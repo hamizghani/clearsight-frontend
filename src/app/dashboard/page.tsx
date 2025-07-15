@@ -2,20 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import Link from 'next/link';
-import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const [authChecked, setAuthChecked] = useState(false);
-  const [subscriptionEnd, setSubscriptionEnd] = useState(() => {
+  const [subscriptionEnd] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('subscriptionEnd') || '';
     }
     return '';
   });
+  
   const [dashboardData, setDashboardData] = useState({ drDetected: 0, drPrevalence: 0 });
   const router = useRouter();
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -25,6 +25,7 @@ export default function DashboardPage() {
       }
     }
   }, [router]);
+  
   useEffect(() => {
     // You can replace this with actual API call
     const fetchDashboardData = async () => {
@@ -39,12 +40,14 @@ export default function DashboardPage() {
     };
     fetchDashboardData();
   }, []);
+  
   const isSubscribed = () => {
     if (!subscriptionEnd) return false;
     const now = new Date();
     const end = new Date(subscriptionEnd);
     return end >= now;
   };
+  
   if (!authChecked) return null;
 
   return (

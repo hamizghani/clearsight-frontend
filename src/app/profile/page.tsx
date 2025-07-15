@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar'; // Import the Navbar component
-import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'next/navigation';
 
 export default function Profile() {
-    const [subscriptionEnd, setSubscriptionEnd] = useState(() => {
+    const [subscriptionEnd] = useState(() => {
         if (typeof window !== 'undefined') {
             return localStorage.getItem('subscriptionEnd') || 'Not subscribed';
         }
@@ -21,6 +20,7 @@ export default function Profile() {
     });
     const router = useRouter();
     const [authChecked, setAuthChecked] = useState(false);
+    
     useEffect(() => {
         if (typeof window !== 'undefined') {
             if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -30,6 +30,7 @@ export default function Profile() {
             }
         }
     }, [router]);
+    
     if (!authChecked) return null;
 
     return (

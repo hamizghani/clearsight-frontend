@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 export default function Contact() {
   const router = useRouter();
   const [authChecked, setAuthChecked] = useState(false);
+  const [message, setMessage] = useState(''); // Move this before any conditional logic
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -17,9 +19,9 @@ export default function Contact() {
       }
     }
   }, [router]);
+  
+  // Early return after all hooks have been called
   if (!authChecked) return null;
-
-  const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

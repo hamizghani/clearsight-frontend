@@ -20,9 +20,11 @@ export default function Payment() {
   const [expiryDate, setExpiryDate] = useState('');
   const [securityCode, setSecurityCode] = useState('');
   const [nameOnCard, setNameOnCard] = useState('');
-  const [price, setPrice] = useState(plan === 'yearly' ? '6.000.000' : '500.000');
+  // Remove unused setPrice and just use a computed value
+  const price = plan === 'yearly' ? '6.000.000' : '500.000';
   const router = useRouter();
   const [authChecked, setAuthChecked] = useState(false);
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -32,20 +34,20 @@ export default function Payment() {
       }
     }
   }, [router]);
+  
   if (!authChecked) return null;
 
   const handleCheckout = () => {
     if (email && cardNumber && expiryDate && securityCode && nameOnCard) {
       try {
         // Simulate updating subscription end date
-        let newEndDate;
-        const now = new Date();
+        const now = new Date(); // Use const instead of let
         if (plan === 'yearly') {
           now.setFullYear(now.getFullYear() + 1);
         } else {
           now.setMonth(now.getMonth() + 1);
         }
-        newEndDate = now.toISOString().split('T')[0];
+        const newEndDate = now.toISOString().split('T')[0]; // Use const instead of let
         if (typeof window !== 'undefined') {
           localStorage.setItem('subscriptionEnd', newEndDate);
         }
