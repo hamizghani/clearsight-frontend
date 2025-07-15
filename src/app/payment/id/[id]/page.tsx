@@ -3,55 +3,53 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import Navbar from '@/components/Navbar'; // Import the Navbar component
-import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 export default function Payment() {
-  const router = useRouter();
-  const addCredits = useUserStore((state) => state.addCredits);
-  const { id } = useParams(); // Correctly retrieve the dynamic route parameter
+  const searchParams = useSearchParams();
+  const plan = searchParams?.get('plan') || 'monthly';
+  const [subscriptionEnd, setSubscriptionEnd] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('subscriptionEnd') || 'Not subscribed';
+    }
+    return 'Not subscribed';
+  });
   const [email, setEmail] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [securityCode, setSecurityCode] = useState('');
   const [nameOnCard, setNameOnCard] = useState('');
-  const [credits, setCredits] = useState(0);
-  const [price, setPrice] = useState('');
-
+  const [price, setPrice] = useState(plan === 'yearly' ? '6.000.000' : '500.000');
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
   useEffect(() => {
-    // Set credits and price based on the id parameter
-    if (id) {
-      const creditAmount = parseInt(id.toString());
-      setCredits(creditAmount);
-
-      // Set price based on credit amount
-      switch (creditAmount) {
-        case 50:
-          setPrice('99.000 IDR');
-          break;
-        case 100:
-          setPrice('189.000 IDR');
-          break;
-        case 200:
-          setPrice('299.000 IDR');
-          break;
-        case 500:
-          setPrice('499.000 IDR');
-          break;
-        default:
-          setPrice('0 IDR');
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
       }
     }
-  }, [id]);
+  }, [router]);
+  if (!authChecked) return null;
 
   const handleCheckout = () => {
     if (email && cardNumber && expiryDate && securityCode && nameOnCard) {
       try {
-        // Add credits to user's account
-        addCredits(credits);
-        
+        // Simulate updating subscription end date
+        let newEndDate;
+        const now = new Date();
+        if (plan === 'yearly') {
+          now.setFullYear(now.getFullYear() + 1);
+        } else {
+          now.setMonth(now.getMonth() + 1);
+        }
+        newEndDate = now.toISOString().split('T')[0];
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('subscriptionEnd', newEndDate);
+        }
+        setSubscriptionEnd(newEndDate);
         // Navigate to payment done page
         router.push('/payment/id/paymentdone');
       } catch (error) {
@@ -65,12 +63,11 @@ export default function Payment() {
   return (
     <div className="min-h-screen flex flex-col font-['Poppins']">
       <Head>
-        <title>Checkout - {credits} Credits | ClearSight AI</title>
-        <meta name="description" content={`Purchase ${credits} credits for ClearSight AI`} />
+        <title>Checkout - Subscription | ClearSight AI</title>
+        <meta name="description" content={`Purchase subscription for ClearSight AI`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Navigation Bar */}
-      <Navbar /> {/* Use the Navbar component */}
       {/* Checkout content */}
       <div className="flex flex-1">
         {/* Left Column - Logo */}
@@ -110,14 +107,17 @@ export default function Payment() {
           {/* Subtotal Section */}
           <div className="flex items-center justify-between py-6 border-b border-gray-200">
             <div className="bg-[#59b4ff] text-white p-4 rounded-lg flex flex-col items-center justify-center">
-              <div className="text-5xl font-bold leading-none">{credits}</div>
-              <div className="text-xl font-semibold">CREDITS</div>
+              <div className="text-xl font-semibold">{plan === 'yearly' ? 'Yearly Subscription' : 'Monthly Subscription'}</div>
             </div>
             <div className="text-right">
               <div className="text-xl text-gray-600">SUBTOTAL</div>
               <div className="text-4xl font-bold">{price}</div>
               <div className="text-sm text-gray-600">PRICE INCLUDES GST</div>
             </div>
+          </div>
+          {/* Show subscription end date after payment */}
+          <div className="mt-4 text-center text-lg text-blue-600">
+            Subscription will last until: <span className="font-bold">{subscriptionEnd}</span>
           </div>
 
           {/* Payment Section */}

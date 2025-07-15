@@ -1,12 +1,25 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import { useProcessStore } from '@/store/processStore';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const HistoryPage = () => {
     const isProcessComplete = useProcessStore((state) => state.isProcessComplete);
+    const router = useRouter();
+    const [authChecked, setAuthChecked] = useState(false);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                router.replace('/');
+            } else {
+                setAuthChecked(true);
+            }
+        }
+    }, [router]);
+    if (!authChecked) return null;
 
     // Dummy patient data with unique ID
     const patientHistory = {

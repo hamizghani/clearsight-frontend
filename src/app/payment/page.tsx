@@ -1,15 +1,30 @@
+'use client';
 // pages/top-up.tsx
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function TopUp() {
-  const creditOptions = [
-    { credits: 50, price: '99.000 IDR' },
-    { credits: 100, price: '189.000 IDR' },
-    { credits: 200, price: '299.000 IDR' },
-    { credits: 500, price: '499.000 IDR' },
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+      }
+    }
+  }, [router]);
+  if (!authChecked) return null;
+
+  // Two subscription options
+  const subscriptionOptions = [
+    { label: 'Pay per month', price: '500.000', plan: 'monthly' },
+    { label: 'Pay per year', price: '6.000.000', plan: 'yearly' },
   ];
 
   return (
@@ -23,45 +38,29 @@ export default function TopUp() {
       {/* Navigation Bar */}
       <Navbar />
 
-      {/* Pricing content section */}
+      {/* Subscription content section */}
       <main className="flex-1 flex flex-col items-center max-w-6xl mx-auto w-full p-8">
-        <h1 className="text-5xl font-bold text-center my-12 font-['Poppins']">Top Up Credits</h1>
-
-        <div className="flex flex-wrap justify-center gap-6 w-full mb-12">
-          {creditOptions.map((option, index) => (
-            <Link 
-              key={index} 
-              href={`/payment/id/${option.credits}`}
-              className="group relative w-56 h-60 rounded-lg cursor-pointer"
+        <h1 className="text-5xl font-bold text-center my-12 font-['Poppins']">Subscription</h1>
+        <div className="flex justify-center w-full mb-12 gap-8">
+          {subscriptionOptions.map(option => (
+            <div
+              key={option.plan}
+              className="group relative w-56 h-60 rounded-lg cursor-pointer transform transition-all duration-300 hover:scale-105"
+              onClick={() => router.push(`/payment/id/subscribe?plan=${option.plan}`)}
+              tabIndex={0}
+              role="button"
+              onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') router.push(`/payment/id/subscribe?plan=${option.plan}`); }}
             >
-              {/* Card with gradient background */}
-              <div className={`
-                w-full h-full rounded-lg flex flex-col items-center justify-center p-6
-                transition-transform duration-300 group-hover:-translate-y-2
-                ${index === 0 ? 'bg-gradient-to-b from-[#59b4ff] to-[#a6d7ff]' : ''}
-                ${index === 1 ? 'bg-gradient-to-b from-[#4fa9fd] to-[#a6d7ff]' : ''}
-                ${index === 2 ? 'bg-gradient-to-b from-[#4298ea] to-[#a6d7ff]' : ''}
-                ${index === 3 ? 'bg-gradient-to-b from-[#3387d6] to-[#a6d7ff]' : ''}
-              `}>
-                <div className="text-6xl font-bold text-white font-['Poppins']">
-                  {option.credits}
-                </div>
-                <div className="text-2xl font-semibold text-white font-['Poppins']">
-                  CREDITS
-                </div>
-                <div className="text-xl mt-6 text-white font-['Poppins']">
-                  {option.price}
-                </div>
+              <div className="w-full h-full rounded-lg flex flex-col items-center justify-center p-6 bg-gradient-to-b from-[#3387d6] to-[#a6d7ff]">
+                <div className="text-2xl font-bold text-white font-['Poppins'] mb-2">{option.label}</div>
+                <div className="text-4xl font-bold text-white font-['Poppins']">{option.price}</div>
               </div>
-              
-              {/* Circle at bottom */}
               <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md">
                 <div className="w-8 h-8 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
-
         <div className="flex flex-col items-center w-full mt-8">
           <p className="text-xl font-medium mb-4 font-['Poppins']">We take</p>
           <Image

@@ -11,14 +11,22 @@ export default function LoginPage() {
         hospitalId: '',
         authenticationId: ''
     });
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            console.log('Login attempted with:', credentials);
+        // Hardcoded credentials
+        if (
+            credentials.hospitalId === 'rsui' &&
+            credentials.authenticationId === 'rsui'
+        ) {
+            // Set login flag in localStorage
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('isLoggedIn', 'true');
+            }
             router.push('/dashboard');
-        } catch (error) {
-            console.error('Login error:', error);
+        } else {
+            setError('Wrong username or password');
         }
     };
 
@@ -84,6 +92,9 @@ export default function LoginPage() {
                         >
                             Log In
                         </button>
+                        {error && (
+                            <div className="text-red-500 text-center mt-2">{error}</div>
+                        )}
                         <p className="text-center text-white mt-4">
                             Dont have an ID?{' '}
                             <Link href="/signup" className="underline hover:text-blue-100">

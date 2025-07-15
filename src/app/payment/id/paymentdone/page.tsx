@@ -1,9 +1,27 @@
+'use client';
 // pages/purchase-confirmation.js
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function PurchaseConfirmation() {
+  const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
+  const [subscriptionEnd, setSubscriptionEnd] = useState('');
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        router.replace('/');
+      } else {
+        setAuthChecked(true);
+        setSubscriptionEnd(localStorage.getItem('subscriptionEnd') || 'Not subscribed');
+      }
+    }
+  }, [router]);
+  if (!authChecked) return null;
+
   return (
     <div className="">
       <Head>
@@ -76,8 +94,8 @@ export default function PurchaseConfirmation() {
                 />
               </div>
               
-              <h2 className="text-3xl font-bold text-center mb-2">Thank you for your purchase!</h2>
-              <p className="text-xl text-gray-600 mb-8 text-center">The invoice has been sent to your email</p>
+              <p className="text-2xl font-bold text-center mb-4">Thank you for your payment!</p>
+              <p className="text-lg text-center mb-8">Your subscription lasts until: <span className="font-bold">{subscriptionEnd}</span></p>
               
               <Link 
                 href="/dashboard" 
