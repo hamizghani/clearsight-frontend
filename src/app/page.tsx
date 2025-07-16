@@ -280,10 +280,7 @@ export default function EnhancedLandingPage() {
                   ))}
                 </ul>
                 
-                <button className="w-full bg-gradient-to-r from-blue-700 to-blue-500 text-white py-4 rounded-full font-semibold hover:from-blue-700 hover:to-blue-500 transition-all transform hover:scale-105 shadow-lg">
-                  Get Started Now
-                  <ArrowRight className="w-5 h-5 ml-2 inline" />
-                </button>
+                <a href="/signup" className="w-full bg-gradient-to-r from-blue-700 to-blue-500 text-white py-4 rounded-full font-semibold hover:from-blue-700 hover:to-blue-500 transition-all transform hover:scale-105 shadow-lg flex items-center justify-center">Get Started Now <ArrowRight className="w-5 h-5 ml-2 inline" /></a>
               </div>
             </div>
           </div>
