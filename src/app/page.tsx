@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Eye, Shield, Zap, Users, ChevronDown, Play, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { Menu, X, Eye, Shield, Zap, Users, CheckCircle, ArrowRight } from 'lucide-react';
 import Logo1 from '@/components/Logo1';
 
 export default function EnhancedLandingPage() {
