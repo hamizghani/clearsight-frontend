@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import { useProcessStore } from '@/store/processStore';
 
@@ -15,31 +14,13 @@ export default function DetectPage() {
   const [patientSymptom, setPatientSymptom] = useState('');
   const [symptomDuration, setSymptomDuration] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const setProcessComplete = useProcessStore((state) => state.setProcessComplete);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      setSelectedFile(file);
-      
-      // Create image preview URL
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      setSelectedFile(event.target.files[0]);
     }
   };
-
-  // Clean up preview URL on component unmount
-  React.useEffect(() => {
-    return () => {
-      if (imagePreview) {
-        URL.revokeObjectURL(imagePreview);
-      }
-    };
-  }, [imagePreview]);
 
   const handleProcessClick = async () => {
     if (selectedFile && patientName && patientDOB && patientGender) {
@@ -156,17 +137,8 @@ export default function DetectPage() {
                 onChange={handleFileChange}
                 className="absolute opacity-0 w-full h-full cursor-pointer z-10"
               />
-              {imagePreview ? (
-                <div className="w-full h-full relative">
-                  <Image
-                    src={imagePreview}
-                    alt="Preview"
-                    className="w-full h-full object-contain rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
-                    <p className="text-white">Click or drag to replace</p>
-                  </div>
-                </div>
+              {selectedFile ? (
+                <p className="text-gray-700 font-semibold">{selectedFile.name}</p>
               ) : (
                 <p className="text-gray-500">Upload or Drop Image</p>
               )}
